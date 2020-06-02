@@ -1,9 +1,28 @@
+:root {
+    --title-color: #322153;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 body {
     background: #f0f0f5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Ubuntu, sans-serif;
+    color: var(--title-color);
 }
 
 #page-home {
@@ -14,11 +33,16 @@ body {
 
 #page-home .content {
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
+    height: 100%;
     margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
 }
 
 #page-home header {
+    margin-top: 46px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,11 +50,28 @@ body {
 
 #page-home header a {
     display: flex;
+    color: var(--title-color);
+    font-weight: 700;
 }
 
 #page-home header a span {
     display: flex;
+    margin-right: 16px;
     background-image: url('../assets/log-in.svg');
     width: 20px;
     height: 20px;
+}
+
+#page-home main {
+    max-width: 560px;
+    
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#page-home main h1 {
+    font-size: 54px;
 }
