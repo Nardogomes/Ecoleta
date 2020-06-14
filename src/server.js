@@ -36,7 +36,7 @@ server.get("/search", (req, res) => {
     })
 })
 
-server.post("/create-point", function(req, res) {
+server.post("/savepoint", function(req, res) {
     const image = req.body.image
     const name = req.body.name
     const address = req.body.address
@@ -46,15 +46,18 @@ server.post("/create-point", function(req, res) {
     const items = req.body.items
 
     const query = `
-        INSERT INTO places (image, name, address, address2, state, ciry, items)
+        INSERT INTO places ("image", "name", "address", "address2", "state", "city", "items")
         VALUES ($1, $2, $3, $4, $5, $6, $7)`
 
     const values = [image, name, address, address2, state, city, items]
+    console.log(values)
 
     db.query(query, values, function(err) {
-        if(err) return res.send("Erro no banco de dados.")
-        //return res.redirect("/search-results")
-        console.log("Cadastrado")
+        if(err) {
+            console.log(err)
+            return res.send("Erro no banco de dados.")
+        }
+        return res.render("create-point.html", { saved: true })
     })
 })
 
