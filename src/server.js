@@ -33,7 +33,7 @@ server.get("/search", (req, res) => {
         return res.render("search-results.html", { total: 0 })
     }
 
-    db.query(`SELECT * FROM places WHERE city = '${search}'`, function(err, result) {
+    db.query(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, result) {
         if(err) {
             return console.log(err)
         }
