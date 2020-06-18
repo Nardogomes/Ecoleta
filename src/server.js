@@ -26,7 +26,14 @@ server.get("/create-point", (req, res) => {
 })
 
 server.get("/search", (req, res) => {
-    db.query("SELECT * FROM places", function(err, result) {
+
+    const search = req.query.search
+
+    if(search == "") {
+        return res.render("search-results.html", { total: 0 })
+    }
+
+    db.query(`SELECT * FROM places WHERE city = '${search}'`, function(err, result) {
         if(err) {
             return console.log(err)
         }
@@ -53,9 +60,10 @@ server.post("/savepoint", function(req, res) {
     console.log(values)
 
     db.query(query, values, function(err) {
+        var alert
         if(err) {
             console.log(err)
-            return res.send("Erro no banco de dados.")
+            return res.send("Erro nno banco de dados!")
         }
         return res.render("create-point.html", { saved: true })
     })
